@@ -1,0 +1,49 @@
+<div class="row">
+  <div class="col-sm-3"></div>
+  <div class="col-sm-6">
+  <div>
+  <h2>Add Employee</h2>
+    <label>Name</label>
+    <input [(ngModel)]="newEmp.name"  class="form-control ">
+    <label >Email</label>
+    <input [(ngModel)]="newEmp.email" [readonly]="isEdit" class="form-control">
+    <label >Phone</label>
+    <input [(ngModel)]="newEmp.phone" class="form-control">
+    <br>
+    <button *ngIf="addbutton" (click)="addEmp()" class="btn btn-primary">Add Employee</button>
+    <button *ngIf="!addbutton" (click)="addEmp()" class="btn btn-primary">Update Employee</button>
+    </div>
+
+
+    <br><hr><br>
+    <input type="text" [(ngModel)]="userFilter.name" placeholder="Search by name" class="form-control">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+        
+          <th>First Name</th>
+          <th>Email</th>
+          <th>Phone no</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let emp of employees | filterBy: userFilter; let i = index"> 
+        
+          <td>{{emp.name}}</td>
+          <td>{{emp.email}}</td>
+          <td>{{emp.phone}}</td>
+          <td><span class="glyphicon glyphicon-pencil" (click) = "editEmp(emp, i)" ></span> </td>
+
+          <td ><span (click) = "deleteEmp(i)" class="glyphicon glyphicon-trash"></span></td>
+
+        </tr>
+      </tbody>
+      </table>
+  
+  </div>
+  <div class="col-sm-3"></div>
+</div>
